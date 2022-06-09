@@ -17,7 +17,7 @@ const getButton = (buttonType = BUTTON_TYPE_CLASSES.base) =>
 // };
 const Button = ({ children, buttonType, ...rest }) => {
 	const CustomButton = getButton(buttonType);
-	console.log(CustomButton);
+
 	return (
 		<>
 			<button className={`button-container ${BUTTON_TYPE_CLASSES[buttonType]}`} {...rest}>

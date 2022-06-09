@@ -9,6 +9,7 @@ import CartDropDown from '../../components/CartDropDown/CartDropDown';
 import { NavigationContainer, LogoContainer, NavLinks, NavLink } from './NavigationStyles';
 const Navigation = () => {
 	const { currentUser, setCurrentUser } = useContext(UserContext);
+	console.log({ currentUser });
 	const { isCartOpen, setIsCartOpen } = useContext(CartContext);
 
 	const signOutHandler = async () => {
