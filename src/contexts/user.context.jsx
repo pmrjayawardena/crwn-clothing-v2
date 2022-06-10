@@ -1,55 +1,56 @@
-import { createContext, useState, useEffect, useReducer } from 'react';
-import { onAuthStateChangeListner, createUserDocumentFromAuth, signOutUser } from '../utils/firebase/firebase.js';
+// import { createContext, useState, useEffect, useReducer } from 'react';
+// import { onAuthStateChangeListner, createUserDocumentFromAuth, signOutUser } from '../utils/firebase/firebase.js';
 
-//as the actual value you want to access
-export const UserContext = createContext({
-	currentUser: null,
-	setCurrentUser: () => null,
-});
+// //as the actual value you want to access
+// export const UserContext = createContext({
+// 	currentUser: null,
+// 	setCurrentUser: () => null,
+// });
 
-export const USER_ACTION_TYPES = {
-	SET_CURRENT_USER: 'SET_CURRENT_USER',
-};
-const userReducer = (state, action) => {
-	const { type, payload } = action;
-	switch (type) {
-		case USER_ACTION_TYPES.SET_CURRENT_USER:
-			return {
-				...state, //previus state
-				currentUser: payload,
-			};
-		case 'INCREMENT':
-			return {
-				value: state.value + 1,
-			};
+// export const USER_ACTION_TYPES = {
+// 	SET_CURRENT_USER: 'SET_CURRENT_USER',
+// };
 
-		default:
-			throw new Error(`Unhandled type ${type} in the user Reducer`);
-	}
-};
+// const INITIAL_STATE = {
+// 	currentUser: null,
+// };
+// const userReducer = (state, action) => {
+// 	const { type, payload } = action;
+// 	switch (type) {
+// 		case USER_ACTION_TYPES.SET_CURRENT_USER:
+// 			return {
+// 				...state, //previus state
+// 				currentUser: payload,
+// 			};
+// 		case 'INCREMENT':
+// 			return {
+// 				value: state.value + 1,
+// 			};
 
-const INITIAL_STATE = {
-	currentUser: null,
-};
-export const UserProvider = ({ children }) => {
-	// const [currentUser, setCurrentUser] = useState(null);
-	const [state, dispatch] = useReducer(userReducer, INITIAL_STATE);
-	const { currentUser } = state;
-	const setCurrentUser = (user) => {
-		dispatch({ type: USER_ACTION_TYPES.SET_CURRENT_USER, user });
-	};
-	const value = { currentUser, setCurrentUser };
-	useEffect(() => {
-		const unsubcribe = onAuthStateChangeListner((user) => {
-			// signOutUser();
+// 		default:
+// 			throw new Error(`Unhandled type ${type} in the user Reducer`);
+// 	}
+// };
 
-			if (user) {
-				createUserDocumentFromAuth(user);
-			}
+// export const UserProvider = ({ children }) => {
+// 	// const [currentUser, setCurrentUser] = useState(null);
+// 	const [state, dispatch] = useReducer(userReducer, INITIAL_STATE);
+// 	const { currentUser } = state;
+// 	const setCurrentUser = (user) => {
+// 		dispatch({ type: USER_ACTION_TYPES.SET_CURRENT_USER, user });
+// 	};
+// 	const value = { currentUser, setCurrentUser };
+// 	useEffect(() => {
+// 		const unsubcribe = onAuthStateChangeListner((user) => {
+// 			// signOutUser();
 
-			setCurrentUser(user);
-		});
-		return unsubcribe;
-	}, []);
-	return <UserContext.Provider value={value}>{children}</UserContext.Provider>;
-};
+// 			if (user) {
+// 				createUserDocumentFromAuth(user);
+// 			}
+
+// 			setCurrentUser(user);
+// 		});
+// 		return unsubcribe;
+// 	}, []);
+// 	return <UserContext.Provider value={value}>{children}</UserContext.Provider>;
+// };

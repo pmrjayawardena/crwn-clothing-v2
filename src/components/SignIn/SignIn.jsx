@@ -11,7 +11,7 @@ import {
 import FormInput from '../../components/FormInput/FormInput';
 import Button from '../Button/Button';
 import './SignIn.scss';
-import { UserContext } from '../../contexts/user.context';
+// import { UserContext } from '../../contexts/user.context';
 const defaultFormFields = {
 	email: '',
 	password: '',
@@ -43,7 +43,7 @@ const SignIn = () => {
 	const [formFields, setFormFields] = useState(defaultFormFields);
 	const { email, password } = formFields;
 
-	const { setCurrentUser } = useContext(UserContext);
+	// const { setCurrentUser } = useContext(UserContext);
 	const handleChange = (event) => {
 		const { name, value } = event.target;
 		setFormFields({ ...formFields, [name]: value });
