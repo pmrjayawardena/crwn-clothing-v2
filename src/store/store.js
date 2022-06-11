@@ -10,7 +10,8 @@ import thunk from 'redux-thunk';
 const persistConfig = {
 	key: 'root',
 	storage,
-	blackList: ['user'],
+	// blackList: ['user'],
+	whitelist: ['cart'],
 };
 
 const persistedReducer = persistReducer(persistConfig, rootReducer);
