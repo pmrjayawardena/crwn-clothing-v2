@@ -17,12 +17,12 @@ export const fetchCategoriesSuccess = (categoriesArray) => ({ type: 'FETCH_CATEG
 
 export const fetchCategoriesFailure = (error) => ({ type: 'FETCH_CATEGORIES_FAILED', payload: error });
 
-export const fetchCategoriesAsync = (payload) => async (dispatch) => {
-	dispatch(fetchCategoriesStart());
-	try {
-		const categoriesArray = await getCategoriesAndDocuments('categories');
-		dispatch(fetchCategoriesSuccess(categoriesArray));
-	} catch (error) {
-		dispatch(fetchCategoriesFailure(error));
-	}
-};
+// export const fetchCategoriesAsync = (payload) => async (dispatch) => {
+// 	dispatch(fetchCategoriesStart());
+// 	try {
+// 		const categoriesArray = await getCategoriesAndDocuments('categories');
+// 		dispatch(fetchCategoriesSuccess(categoriesArray));
+// 	} catch (error) {
+// 		dispatch(fetchCategoriesFailure(error));
+// 	}
+// };
