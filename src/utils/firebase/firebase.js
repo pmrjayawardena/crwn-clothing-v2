@@ -100,9 +100,22 @@ export const createAuthUserWithEmailAndPassword = async (email, password) => {
 export const signInWithGoogleEmailAndPassword = async (email, password) => {
 	await signInWithEmailAndPassword(auth, email, password);
 };
-export const signOutUser = async (email, password) => {
+export const signOutUser = async () => {
 	await signOut(auth);
 };
 export const onAuthStateChangeListner = async (callback) => {
 	return onAuthStateChanged(auth, callback);
+};
+
+export const getCurrentUser = () => {
+	return new Promise((resolve, reject) => {
+		const unsubscribe = onAuthStateChanged(
+			auth,
+			(userAuth) => {
+				unsubscribe();
+				resolve(userAuth);
+			},
+			reject
+		);
+	});
 };

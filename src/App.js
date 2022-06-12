@@ -5,23 +5,25 @@ import Authentication from './routes/Authentication/Authentication.jsx';
 import Shop from './routes/Shop/Shop';
 import Checkout from './routes/Checkout/Checkout.jsx';
 import { useEffect } from 'react';
-import { onAuthStateChangeListner, createUserDocumentFromAuth, signOutUser } from './utils/firebase/firebase';
+import { onAuthStateChangeListner, createUserDocumentFromAuth, signOutUser, getCurrentUser } from './utils/firebase/firebase';
 import { useDispatch } from 'react-redux';
-import { setCurrentUser } from './store/user/user.action';
+import { checkUserSession } from './store/user/user.action';
 const App = () => {
 	//dispatch will not change but we add it to dependance arry to go away the linting error
 	const dispatch = useDispatch();
 	useEffect(() => {
-		const unsubcribe = onAuthStateChangeListner((user) => {
-			// signOutUser();
+		dispatch(checkUserSession());
 
-			if (user) {
-				createUserDocumentFromAuth(user);
-			}
+		// const unsubcribe = onAuthStateChangeListner((user) => {
+		// 	// signOutUser();
 
-			dispatch(setCurrentUser(user));
-		});
-		return unsubcribe;
+		// 	if (user) {
+		// 		createUserDocumentFromAuth(user);
+		// 	}
+
+		// 	dispatch(setCurrentUser(user));
+		// });
+		// return unsubcribe;
 	}, [dispatch]);
 	return (
 		<Routes>

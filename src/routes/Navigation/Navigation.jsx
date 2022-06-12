@@ -8,9 +8,9 @@ import CartIcon from '../../components/CartIcon/CartIcon';
 import CartDropDown from '../../components/CartDropDown/CartDropDown';
 import { NavigationContainer, LogoContainer, NavLinks, NavLink } from './NavigationStyles';
 import { useSelector, useDispatch } from 'react-redux';
-import { setCurrentUser } from '../../store/user/user.action.js';
 import { selectCurrentUser } from '../../store/user/user.selector.js';
 import { selectIsCartOpen } from '../../store/cart/cart.selector.js';
+import { signOutStart } from '../../store/user/user.action.js';
 const Navigation = () => {
 	// const { currentUser, setCurrentUser } = useContext(UserContext);
 
@@ -20,8 +20,10 @@ const Navigation = () => {
 
 	// const { isCartOpen, setIsCartOpen } = useContext(CartContext);
 	const isCartOpen = useSelector(selectIsCartOpen);
+
 	const signOutHandler = async () => {
-		await signOutUser();
+		dispatch(signOutStart());
+		// await signOutUser();
 		// dispatch(setCurrentUser(null));
 	};
 

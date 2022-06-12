@@ -11,12 +11,15 @@ import {
 import FormInput from '../../components/FormInput/FormInput';
 import Button from '../Button/Button';
 import './SignIn.scss';
+import { useDispatch } from 'react-redux';
+import { googleSignInStart, emailSignInStart } from '../../store/user/user.action.js';
 // import { UserContext } from '../../contexts/user.context';
 const defaultFormFields = {
 	email: '',
 	password: '',
 };
 const SignIn = () => {
+	const dispatch = useDispatch();
 	const logGoogleUser = async () => {
 		await signInWithGooglePopup();
 		// await createUserDocumentFromAuth(response.user);
@@ -56,8 +59,9 @@ const SignIn = () => {
 		event.preventDefault();
 
 		try {
-			const response = await signInWithGoogleEmailAndPassword(email, password);
-			console.log(response);
+			dispatch(emailSignInStart(email, password));
+			// const response = await signInWithGoogleEmailAndPassword(email, password);
+			// console.log(response);
 			// setCurrentUser(user);
 			resetFormFields();
 		} catch (error) {
