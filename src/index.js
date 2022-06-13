@@ -4,13 +4,11 @@ import './index.scss';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 import { BrowserRouter } from 'react-router-dom';
-import { UserProvider } from './contexts/user.context.jsx';
-import { CategoriesProvider } from './contexts/categories.context.jsx';
-import { CartProvider } from './contexts/cart.context.jsx';
+import { Elements } from '@stripe/react-stripe-js';
 import { Provider } from 'react-redux';
 import { store, persistor } from './store/store';
 import { PersistGate } from 'redux-persist/integration/react';
-
+import { stripePromise } from './utils/stripe/stripe.util';
 ReactDOM.render(
 	<React.StrictMode>
 		<Provider store={store}>
@@ -19,7 +17,9 @@ ReactDOM.render(
 					{/* <UserProvider> */}
 					{/* <CategoriesProvider> */}
 					{/* <CartProvider> */}
-					<App />
+					<Elements stripe={stripePromise}>
+						<App />
+					</Elements>
 					{/* </CartProvider> */}
 					{/* </CategoriesProvider> */}
 					{/* </UserProvider> */}

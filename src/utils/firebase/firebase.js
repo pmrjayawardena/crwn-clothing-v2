@@ -58,14 +58,6 @@ export const getCategoriesAndDocuments = async () => {
 	const q = query(collectionRef);
 	const querySnapShop = await getDocs(q);
 	return querySnapShop.docs.map((docSnapshot) => docSnapshot.data());
-
-	// .reduce((acc, docSnapshot) => {
-	// 	const { title, items } = docSnapshot.data();
-	// 	acc[title.toLowerCase()] = items;
-	// 	return acc;
-	// }, {});
-
-	// return categoryMap;
 };
 export const createUserDocumentFromAuth = async (userAuth, additionalInformation = {}) => {
 	const userDocRef = doc(db, 'users', userAuth.uid);
@@ -98,6 +90,7 @@ export const createAuthUserWithEmailAndPassword = async (email, password) => {
 };
 
 export const signInWithGoogleEmailAndPassword = async (email, password) => {
+	console.log({ auth });
 	await signInWithEmailAndPassword(auth, email, password);
 };
 export const signOutUser = async () => {
