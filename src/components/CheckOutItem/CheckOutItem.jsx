@@ -1,8 +1,8 @@
-import React, { useContext } from 'react';
+import React from 'react';
 // import { CartContext } from '../../contexts/cart.context';
 import './CheckOutItem.scss';
-import { addItemToCart, removeItemToCart, clearItemsFromCart } from '../../store/cart/cart.action.js';
-import { selectCartItems } from '../../store/cart/cart.selector.js';
+import { addItemToCart, removeItemToCart, clearItemsFromCart } from '../../store/cart/cart.action.ts';
+import { selectCartItems } from '../../store/cart/cart.selector.ts';
 import { useSelector, useDispatch } from 'react-redux';
 export const CheckOutItem = ({ cartItem }) => {
 	// const { addItemToCart, removeItemToCart, clearItemsFromCart } = useContext(CartContext);

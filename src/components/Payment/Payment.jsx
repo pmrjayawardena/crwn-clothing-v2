@@ -3,7 +3,7 @@ import React from 'react';
 import { CardElement, useStripe, useElements } from '@stripe/react-stripe-js';
 import { useState } from 'react';
 import { useSelector } from 'react-redux';
-import { selectCartTotal } from '../../store/cart/cart.selector.js';
+import { selectCartTotal } from '../../store/cart/cart.selector.ts';
 // import {PaymentElement} from '@stripe/react-stripe-js';
 import Button from '../Button/Button';
 export const Payment = (props) => {

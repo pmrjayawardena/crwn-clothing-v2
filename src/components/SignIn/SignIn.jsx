@@ -7,12 +7,12 @@ import {
 	signInWithGooglePopup,
 	auth,
 	signInWithGoogleEmailAndPassword,
-} from '../../utils/firebase/firebase.js';
+} from '../../utils/firebase/firebase.ts';
 import FormInput from '../../components/FormInput/FormInput';
 import Button from '../Button/Button';
 import './SignIn.scss';
 import { useDispatch } from 'react-redux';
-import { googleSignInStart, emailSignInStart } from '../../store/user/user.action.js';
+import { googleSignInStart, emailSignInStart } from '../../store/user/user.action.ts';
 // import { UserContext } from '../../contexts/user.context';
 const defaultFormFields = {
 	email: '',

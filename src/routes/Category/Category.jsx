@@ -3,7 +3,7 @@ import { useParams } from 'react-router-dom';
 import { CategoriesContext } from '../../contexts/categories.context';
 import ProductCard from '../../components/ProductCard/ProductCard';
 import { useSelector } from 'react-redux';
-import { selectCategoriesMap, selectCategoriesIsLoading } from '../../store/category/category.selector.js';
+import { selectCategoriesMap, selectCategoriesIsLoading } from '../../store/category/category.selector.ts';
 import './Category.scss';
 
 import Spinner from '../../components/Spinner/Spinner';

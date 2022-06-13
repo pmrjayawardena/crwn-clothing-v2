@@ -2,7 +2,7 @@ import './CategoriesPreview.scss';
 import { useContext } from 'react';
 import { CategoriesContext } from '../../contexts/categories.context';
 import CategoryPreview from '../../components/CategoryPreview/CategoryPreview';
-import { selectCategoriesMap, selectCategoriesIsLoading } from '../../store/category/category.selector.js';
+import { selectCategoriesMap, selectCategoriesIsLoading } from '../../store/category/category.selector.ts';
 import { useSelector } from 'react-redux';
 import Spinner from '../../components/Spinner/Spinner';
 const CategoriesPreview = () => {

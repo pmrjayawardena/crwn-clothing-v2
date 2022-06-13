@@ -1,11 +1,11 @@
 import React, { useState, useContext } from 'react';
-import { createAuthUserWithEmailAndPassword, createUserDocumentFromAuth } from '../../utils/firebase/firebase.js';
+import { createAuthUserWithEmailAndPassword, createUserDocumentFromAuth } from '../../utils/firebase/firebase.ts';
 import FormInput from '../../components/FormInput/FormInput';
 import Button from '../Button/Button';
 // import { UserContext } from '../../contexts/user.context';
 import './SignUp.scss';
 import { useDispatch } from 'react-redux';
-import { signUpStart } from '../../store/user/user.action.js';
+import { signUpStart } from '../../store/user/user.action.ts';
 const defaultFormFields = {
 	displayName: '',
 	email: '',
