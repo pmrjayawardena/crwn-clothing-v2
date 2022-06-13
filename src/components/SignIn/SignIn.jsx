@@ -1,18 +1,11 @@
-import React, { useState, useEffect, useContext } from 'react';
+import React, { useState, useEffect } from 'react';
 import { getRedirectResult } from 'firebase/auth';
-import {
-	signOut,
-	signInWithGoogleRedirect,
-	createUserDocumentFromAuth,
-	signInWithGooglePopup,
-	auth,
-	signInWithGoogleEmailAndPassword,
-} from '../../utils/firebase/firebase.ts';
+import { createUserDocumentFromAuth, signInWithGooglePopup, auth } from '../../utils/firebase/firebase.ts';
 import FormInput from '../../components/FormInput/FormInput';
 import Button from '../Button/Button';
 import './SignIn.scss';
 import { useDispatch } from 'react-redux';
-import { googleSignInStart, emailSignInStart } from '../../store/user/user.action.ts';
+import { emailSignInStart } from '../../store/user/user.action.ts';
 // import { UserContext } from '../../contexts/user.context';
 const defaultFormFields = {
 	email: '',

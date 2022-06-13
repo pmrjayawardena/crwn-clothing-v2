@@ -1,6 +1,5 @@
-import React, { useContext, useState, useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
-import { CategoriesContext } from '../../contexts/categories.context';
 import ProductCard from '../../components/ProductCard/ProductCard';
 import { useSelector } from 'react-redux';
 import { selectCategoriesMap, selectCategoriesIsLoading } from '../../store/category/category.selector.ts';

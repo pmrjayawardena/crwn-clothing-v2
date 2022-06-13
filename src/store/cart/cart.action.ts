@@ -1,6 +1,6 @@
 import { CART_ACTION_TYPES, CartItem } from './cart.types';
 import { CategoryItem } from '../category/category.types';
-import { createAction, withMatcher, Action, ActionWithPayload } from '../../utils/reducer/reducer.util';
+import { createAction, withMatcher, ActionWithPayload } from '../../utils/reducer/reducer.util';
 
 const addCartItem = (cartItems: CartItem[], productToAdd: CategoryItem): CartItem[] => {
 	const foundItem = cartItems.find((item) => item.id === productToAdd.id);
@@ -40,7 +40,7 @@ export type SetIsCartOpen = ActionWithPayload<CART_ACTION_TYPES.SET_IS_CART_OPEN
 
 export const setIsCartOpen = withMatcher((boolean: boolean): SetIsCartOpen => createAction(CART_ACTION_TYPES.SET_IS_CART_OPEN, boolean));
 
-export const setCartItems = withMatcher((cartItems: CartItem[]): setCartItems => createAction(CART_ACTION_TYPES.SET_CART_ITEMS, cartItems));
+export const setCartItems = withMatcher((cartItems: CartItem[]) => createAction(CART_ACTION_TYPES.SET_CART_ITEMS, cartItems));
 
 const clearCartItem = (cartItems: CartItem[], cartItemToClear: CartItem): CartItem[] => {
 	return cartItems.filter((item) => item.id !== cartItemToClear.id);

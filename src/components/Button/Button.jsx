@@ -20,9 +20,9 @@ const Button = ({ children, buttonType, ...rest }) => {
 
 	return (
 		<>
-			<button className={`button-container ${BUTTON_TYPE_CLASSES[buttonType]}`} {...rest}>
+			<CustomButton className={`button-container ${BUTTON_TYPE_CLASSES[buttonType]}`} {...rest}>
 				{children}
-			</button>
+			</CustomButton>
 		</>
 	);
 };

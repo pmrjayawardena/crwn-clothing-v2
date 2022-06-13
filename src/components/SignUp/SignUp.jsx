@@ -1,5 +1,4 @@
-import React, { useState, useContext } from 'react';
-import { createAuthUserWithEmailAndPassword, createUserDocumentFromAuth } from '../../utils/firebase/firebase.ts';
+import React, { useState } from 'react';
 import FormInput from '../../components/FormInput/FormInput';
 import Button from '../Button/Button';
 // import { UserContext } from '../../contexts/user.context';
