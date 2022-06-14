@@ -1,10 +1,11 @@
-import React, { useState } from 'react';
+import React, { useState, FormEvent, ChangeEvent } from 'react';
 import FormInput from '../../components/FormInput/FormInput';
 import Button from '../Button/Button';
-// import { UserContext } from '../../contexts/user.context';
 import './SignUp.scss';
 import { useDispatch } from 'react-redux';
-import { signUpStart } from '../../store/user/user.action.ts';
+import { signUpStart } from '../../store/user/user.action';
+import { BUTTON_TYPE_CLASSES } from '../Button/Button';
+
 const defaultFormFields = {
 	displayName: '',
 	email: '',
@@ -18,7 +19,7 @@ const SignUp = () => {
 
 	// const { setCurrentUser } = useContext(UserContext);
 
-	const handleChange = (event) => {
+	const handleChange = (event: ChangeEvent<HTMLInputElement>) => {
 		const { name, value } = event.target;
 		setFormFields({ ...formFields, [name]: value });
 	};
@@ -26,7 +27,7 @@ const SignUp = () => {
 	const resetFormFields = () => {
 		setFormFields(defaultFormFields);
 	};
-	const handleSubmit = async (event) => {
+	const handleSubmit = async (event: FormEvent<HTMLFormElement>) => {
 		event.preventDefault();
 		if (password !== confirmPassword) {
 			alert('Passwords do not match');
@@ -40,7 +41,7 @@ const SignUp = () => {
 			// await createUserDocumentFromAuth(user, { displayName });
 			resetFormFields();
 		} catch (error) {
-			console.log(error.message);
+			console.log(error as Error);
 		}
 	};
 	return (
@@ -52,7 +53,7 @@ const SignUp = () => {
 				<FormInput label='Email' type='email' required onChange={handleChange} name='email' value={email} />
 				<FormInput label='Password' type='password' required onChange={handleChange} name='password' value={password} />
 				<FormInput label='Confirm Password' type='password' required onChange={handleChange} name='confirmPassword' value={confirmPassword} />
-				<Button type='submit' buttonType='base'>
+				<Button type='submit' buttonType={BUTTON_TYPE_CLASSES.base}>
 					Sign up
 				</Button>
 				{/* <button type='submit'>Sign up</button> */}

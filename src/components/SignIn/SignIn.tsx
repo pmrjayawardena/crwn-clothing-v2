@@ -1,12 +1,13 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, FormEvent, ChangeEvent } from 'react';
 import { getRedirectResult } from 'firebase/auth';
-import { createUserDocumentFromAuth, signInWithGooglePopup, auth } from '../../utils/firebase/firebase.ts';
+import { createUserDocumentFromAuth, signInWithGooglePopup, auth } from '../../utils/firebase/firebase';
 import FormInput from '../../components/FormInput/FormInput';
 import Button from '../Button/Button';
 import './SignIn.scss';
 import { useDispatch } from 'react-redux';
-import { emailSignInStart } from '../../store/user/user.action.ts';
-// import { UserContext } from '../../contexts/user.context';
+import { emailSignInStart } from '../../store/user/user.action';
+
+import { BUTTON_TYPE_CLASSES } from '../Button/Button';
 const defaultFormFields = {
 	email: '',
 	password: '',
@@ -40,7 +41,7 @@ const SignIn = () => {
 	const { email, password } = formFields;
 
 	// const { setCurrentUser } = useContext(UserContext);
-	const handleChange = (event) => {
+	const handleChange = (event: ChangeEvent<HTMLInputElement>) => {
 		const { name, value } = event.target;
 		setFormFields({ ...formFields, [name]: value });
 	};
@@ -48,7 +49,7 @@ const SignIn = () => {
 	const resetFormFields = () => {
 		setFormFields(defaultFormFields);
 	};
-	const handleSubmit = async (event) => {
+	const handleSubmit = async (event: FormEvent<HTMLFormElement>) => {
 		event.preventDefault();
 
 		try {
@@ -58,7 +59,7 @@ const SignIn = () => {
 			// setCurrentUser(user);
 			resetFormFields();
 		} catch (error) {
-			console.log(error.message);
+			console.log(error as Error);
 		}
 	};
 	return (
@@ -76,12 +77,12 @@ const SignIn = () => {
 				SignIn with google redirect
 			</Button> */}
 					{/* <button onClick={signInWithGoogleRedirect}>SignIn with google redirect</button> */}
-					<Button type='submit' buttonType='base'>
+					<Button type='submit' buttonType={BUTTON_TYPE_CLASSES.base}>
 						Sign In
 					</Button>
 				</div>
 			</form>
-			<Button buttonType='google' onClick={logGoogleUser}>
+			<Button buttonType={BUTTON_TYPE_CLASSES.google} onClick={logGoogleUser}>
 				SignIn with google
 			</Button>
 		</div>

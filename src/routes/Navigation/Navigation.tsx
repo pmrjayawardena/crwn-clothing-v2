@@ -4,9 +4,9 @@ import CartIcon from '../../components/CartIcon/CartIcon';
 import CartDropDown from '../../components/CartDropDown/CartDropDown';
 import { NavigationContainer, LogoContainer, NavLinks, NavLink } from './NavigationStyles';
 import { useSelector, useDispatch } from 'react-redux';
-import { selectCurrentUser } from '../../store/user/user.selector.js';
-import { selectIsCartOpen } from '../../store/cart/cart.selector.ts';
-import { signOutStart } from '../../store/user/user.action.ts';
+import { selectCurrentUser } from '../../store/user/user.selector';
+import { selectIsCartOpen } from '../../store/cart/cart.selector';
+import { signOutStart } from '../../store/user/user.action';
 const Navigation = () => {
 	// const { currentUser, setCurrentUser } = useContext(UserContext);
 

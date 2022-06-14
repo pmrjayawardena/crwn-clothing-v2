@@ -1,9 +1,9 @@
-import Home from './routes/Home/Home.jsx';
+import Home from './routes/Home/Home';
 import { Routes, Route } from 'react-router-dom';
-import Navigation from './routes/Navigation/Navigation.jsx';
-import Authentication from './routes/Authentication/Authentication.jsx';
+import Navigation from './routes/Navigation/Navigation';
+import Authentication from './routes/Authentication/Authentication';
 import Shop from './routes/Shop/Shop';
-import Checkout from './routes/Checkout/Checkout.jsx';
+import Checkout from './routes/Checkout/Checkout';
 import { useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 import { checkUserSession } from './store/user/user.action';

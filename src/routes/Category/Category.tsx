@@ -2,12 +2,15 @@ import React, { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import ProductCard from '../../components/ProductCard/ProductCard';
 import { useSelector } from 'react-redux';
-import { selectCategoriesMap, selectCategoriesIsLoading } from '../../store/category/category.selector.ts';
+import { selectCategoriesMap, selectCategoriesIsLoading } from '../../store/category/category.selector';
 import './Category.scss';
-
 import Spinner from '../../components/Spinner/Spinner';
-export const Category = (props) => {
-	const { category } = useParams();
+
+type CategoryRouteParams = {
+	category: string;
+};
+export const Category = () => {
+	const { category } = useParams<keyof CategoryRouteParams>() as CategoryRouteParams;
 	console.log('render/re-rendering category');
 	// const { categoriesMap } = useContext(CategoriesContext);
 	const categoriesMap = useSelector(selectCategoriesMap);

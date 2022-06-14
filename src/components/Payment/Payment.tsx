@@ -1,18 +1,19 @@
 import { PaymentFormContainer, FormContainer } from './PaymentStyle';
-import React from 'react';
+import React, { FormEvent } from 'react';
 import { CardElement, useStripe, useElements } from '@stripe/react-stripe-js';
 import { useState } from 'react';
 import { useSelector } from 'react-redux';
-import { selectCartTotal } from '../../store/cart/cart.selector.ts';
+import { selectCartTotal } from '../../store/cart/cart.selector';
+import { BUTTON_TYPE_CLASSES } from '../Button/Button';
 // import {PaymentElement} from '@stripe/react-stripe-js';
 import Button from '../Button/Button';
-export const Payment = (props) => {
+export const Payment = () => {
 	const stripe = useStripe();
 	const elements = useElements();
 	const amount = useSelector(selectCartTotal);
 	const [isProcessingPayment, setIsProcessingPayment] = useState(false);
 
-	const paymentHandler = async (e) => {
+	const paymentHandler = async (e: FormEvent<HTMLFormElement>) => {
 		e.preventDefault();
 		if (!stripe || !elements) return;
 		setIsProcessingPayment(true);
@@ -25,9 +26,12 @@ export const Payment = (props) => {
 		}).then((res) => res.json());
 		const clinetSecret = response.paymentIntent.client_secret;
 
+		const cardDetails = elements.getElement(CardElement);
+
+		if (cardDetails === null) return;
 		const paymentResult = await stripe.confirmCardPayment(clinetSecret, {
 			payment_method: {
-				card: elements.getElement(CardElement),
+				card: cardDetails,
 				billing_details: {
 					name: 'Prabodha Jayawardena',
 				},
@@ -49,7 +53,7 @@ export const Payment = (props) => {
 			<FormContainer onSubmit={paymentHandler}>
 				<h2>Credit card payment</h2>
 				<CardElement />
-				<Button disabled={isProcessingPayment} buttonType='inverted'>
+				<Button disabled={isProcessingPayment} buttonType={BUTTON_TYPE_CLASSES.inverted}>
 					Pay now
 				</Button>
 			</FormContainer>
