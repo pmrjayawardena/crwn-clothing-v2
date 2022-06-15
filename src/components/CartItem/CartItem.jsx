@@ -1,5 +1,5 @@
 import './CartItem.scss';
-import React from 'react';
+import React, { memo } from 'react';
 
 export const CartItem = ({ cartItem }) => {
 	const { name, quantity, imageUrl, price } = cartItem;
