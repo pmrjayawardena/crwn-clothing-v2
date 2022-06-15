@@ -4,6 +4,7 @@ import { useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 import { checkUserSession } from './store/user/user.action';
 import Spinner from './components/Spinner/Spinner';
+import { GlobalStyle } from './global.styles';
 //add dynamic imports its like async await
 
 const Home = lazy(() => import('./routes/Home/Home'));
@@ -30,17 +31,20 @@ const App = () => {
 		// return unsubcribe;
 	}, [dispatch]);
 	return (
-		<Suspense fallback={<Spinner />}>
-			<Routes>
-				{/* here we are persisting the navigation and with index we match the compoentn to home */}
-				<Route path='/' element={<Navigation />}>
-					<Route index element={<Home />} />
-					<Route path='shop/*' element={<Shop />} />
-					<Route path='auth' element={<Authentication />} />
-					<Route path='checkout' element={<Checkout />} />
-				</Route>
-			</Routes>
-		</Suspense>
+		<>
+			<GlobalStyle />
+			<Suspense fallback={<Spinner />}>
+				<Routes>
+					{/* here we are persisting the navigation and with index we match the compoentn to home */}
+					<Route path='/' element={<Navigation />}>
+						<Route index element={<Home />} />
+						<Route path='shop/*' element={<Shop />} />
+						<Route path='auth' element={<Authentication />} />
+						<Route path='checkout' element={<Checkout />} />
+					</Route>
+				</Routes>
+			</Suspense>
+		</>
 	);
 };
 
