@@ -29,11 +29,11 @@ const persistConfig: ExtendedPersistConfig = {
 const sagaMiddleware = createSagaMiddleware();
 const persistedReducer = persistReducer(persistConfig, rootReducer);
 //! root-reducer
-const middlewares = [process.env.NODE_ENV !== 'production' && logger, sagaMiddleware].filter((middleware): middleware is Middleware =>
-	Boolean(middleware)
-);
+const middlewares = [sagaMiddleware].filter((middleware) => Boolean(middleware));
 
-const composeEnhancers = (typeof window !== 'undefined' && window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__) || compose;
+const composeEnhancers =
+	(typeof window !== 'undefined' && window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__) ||
+	compose;
 // const composedEnhancers = compose(applyMiddleware(...middlewares));
 const composedEnhancers = composeEnhancers(applyMiddleware(...middlewares));
 // export const store = createStore(rootReducer, undefined, composedEnhancers);

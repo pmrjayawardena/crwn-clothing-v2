@@ -1,20 +1,26 @@
-import React from 'react';
-import { CartDropDownContainer, EmptyMessage, CartItemsContainer } from './CartDropDownStyle';
+import React, { useCallback, useState } from 'react';
+import {
+	CartDropDownContainer,
+	EmptyMessage,
+	CartItemsContainer,
+} from './CartDropDownStyle';
 import Button from '../Button/Button';
 import CartItem from '../CartItem/CartItem';
 // import { CartContext } from '../../contexts/cart.context';
 import { useNavigate } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import { selectCartItems } from '../../store/cart/cart.selector.ts';
+
 export const CartDropDown = (props) => {
 	// const { cartItems, setCartItems } = useContext(CartContext);
-
+	const [temp, setTemp] = useState('A');
 	const navigate = useNavigate();
 	const cartItems = useSelector(selectCartItems);
 
-	const goToCheckoutHandler = () => {
+	const goToCheckoutHandler = useCallback(() => {
+		console.log(temp);
 		navigate('/checkout');
-	};
+	}, [temp]);
 
 	return (
 		<CartDropDownContainer>
@@ -25,6 +31,7 @@ export const CartDropDown = (props) => {
 				))}
 			</CartItemsContainer>
 			<Button onClick={goToCheckoutHandler}>Go to checkout</Button>
+			<Button onClick={() => setTemp('B')}>Update</Button>
 		</CartDropDownContainer>
 	);
 };
